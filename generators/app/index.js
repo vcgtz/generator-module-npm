@@ -88,7 +88,7 @@ module.exports = class extends Generator {
 
   _setJavaScriptFiles() {
     this.fs.copyTpl(
-      this.templatePath('js/eslintrc.js'),
+      this.templatePath('js/.eslintrc.js'),
       this.destinationPath('.eslintrc.js')
     );
 
@@ -104,6 +104,11 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('js/index.js'),
       this.destinationPath('src/index.js')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('js/index.test.js'),
+      this.destinationPath('tests/index.test.js')
     );
   }
 
