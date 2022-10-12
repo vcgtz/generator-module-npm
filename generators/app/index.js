@@ -69,4 +69,18 @@ module.exports = class extends Generator {
       this.destinationPath('src/index.js'),
     );
   }
+
+  install() {
+    this.env.options.nodePackageManager = 'npm';
+  }
+
+  async end() {
+    if (this.answers.gitInit) {
+      this.spawnCommand('git', ['init', '--quiet', '--initial-branch=main']);
+    }
+
+    this.log('');
+    this.log(`Your NPM Module ${this.answers.projectName} has been created!`);
+    this.log('');
+  }
 };
