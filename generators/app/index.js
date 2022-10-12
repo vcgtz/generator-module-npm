@@ -25,6 +25,21 @@ module.exports = class extends Generator {
         default: '',
       },
       {
+        type: 'list',
+        name: 'lang',
+        message: 'Which programming language do you want to use?',
+        choices: [
+          {
+            name: 'JavaScript',
+            value: 'js'
+          },
+          {
+            name: 'TypeScript',
+            value: 'ts'
+          }
+        ]
+      },
+      {
         type: 'confirm',
         name: 'gitInit',
         message: 'Initialize a git repository?',
@@ -50,6 +65,28 @@ module.exports = class extends Generator {
       this.destinationPath('.prettierrc')
     );
 
+    if (this.answers.lang === 'ts') {
+      this._setTypeScriptFiles();
+    } else {
+      this._setJavaScriptFiles();
+    }
+  }
+
+  install() {
+    this.env.options.nodePackageManager = 'npm';
+  }
+
+  async end() {
+    if (this.answers.gitInit) {
+      this.spawnCommand('git', ['init', '--quiet', '--initial-branch=main']);
+    }
+
+    this.log('');
+    this.log(`Your NPM Module ${this.answers.projectName} has been created!`);
+    this.log('');
+  }
+
+  _setJavaScriptFiles() {
     this.fs.copyTpl(
       this.templatePath('js/eslintrc.js'),
       this.destinationPath('.eslintrc.js')
@@ -70,17 +107,39 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
-    this.env.options.nodePackageManager = 'npm';
-  }
+  _setTypeScriptFiles() {
+    this.fs.copyTpl(
+      this.templatePath('ts/.eslintrc.js'),
+      this.destinationPath('.eslintrc.js')
+    );
 
-  async end() {
-    if (this.answers.gitInit) {
-      this.spawnCommand('git', ['init', '--quiet', '--initial-branch=main']);
-    }
+    this.fs.copyTpl(
+      this.templatePath('ts/jest.config.js'),
+      this.destinationPath('jest.config.js')
+    );
 
-    this.log('');
-    this.log(`Your NPM Module ${this.answers.projectName} has been created!`);
-    this.log('');
+    this.fs.copyTpl(
+      this.templatePath('ts/tsconfig.json'),
+      this.destinationPath('tsconfig.json')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('ts/package.json'),
+      this.destinationPath('package.json'),
+      {
+        projectName: this.answers.projectName,
+        projectDescription: this.answers.projectDescription,
+      }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('ts/index.ts'),
+      this.destinationPath('src/index.ts')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('ts/index.test.ts'),
+      this.destinationPath('tests/index.test.ts')
+    );
   }
 };
