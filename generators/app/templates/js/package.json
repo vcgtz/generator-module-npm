@@ -1,0 +1,28 @@
+{
+  "name": <%- JSON.stringify(projectName) %>,
+  "version": "0.0.1",
+  "description": <%- JSON.stringify(projectDescription) %>,
+  "main": "src/index.js",
+  "scripts": {
+    "format": "prettier --write 'src/**/*.js'",
+    "format:check": "prettier --check 'src/**/*.js'",
+    "lint": "eslint 'src/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/"
+  },
+  "keywords": [
+  ],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/"
+  },
+  "homepage": "",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+  }
+}
