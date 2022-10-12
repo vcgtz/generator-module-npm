@@ -1,6 +1,6 @@
 {
   "name": "generator-module-npm",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "NPM module generator",
   "files": [
     "generators"
@@ -16,7 +16,11 @@
     "url": "git+https://github.com/vcgtz/generator-module-npm.git"
   },
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "generator",
+    "javascript",
+    "typescript",
+    "npm"
   ],
   "author": "Vicente Gutiérrez <gtz.rvera@gmail.com>",
   "license": "MIT",
