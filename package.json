@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/vcgtz/generator-npm-pkg#readme",
   "dependencies": {
-    "yeoman-generator": "^5.7.0"
+    "yeoman-generator": "^5.7.0",
+    "yosay": "^2.0.2"
   },
   "devDependencies": {
     "eslint": "^8.25.0",
