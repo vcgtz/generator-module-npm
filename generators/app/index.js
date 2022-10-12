@@ -31,13 +31,13 @@ module.exports = class extends Generator {
         choices: [
           {
             name: 'JavaScript',
-            value: 'js'
+            value: 'js',
           },
           {
             name: 'TypeScript',
-            value: 'ts'
-          }
-        ]
+            value: 'ts',
+          },
+        ],
       },
       {
         type: 'confirm',
