@@ -1,0 +1,36 @@
+{
+  "name": "generator-npm-pkg",
+  "version": "0.0.1",
+  "description": "NPM module generator",
+  "files": [
+    "generators"
+  ],
+  "scripts": {
+    "format": "prettier --write 'generators/**/*.js'",
+    "format:check": "prettier --check 'generators/**/*.js'",
+    "lint": "eslint 'generators/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcgtz/generator-npm-pkg.git"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Vicente Gutiérrez <gtz.rvera@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vcgtz/generator-npm-pkg/issues"
+  },
+  "homepage": "https://github.com/vcgtz/generator-npm-pkg#readme",
+  "dependencies": {
+    "yeoman-generator": "^5.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.7.1"
+  }
+}
