@@ -15,13 +15,13 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'projectName',
-        message: 'What\'s the name of your package?',
+        message: "What's the name of your package?",
         default: this.appname,
       },
       {
         type: 'input',
         name: 'projectDescription',
-        message: 'What\'s the description of your project?',
+        message: "What's the description of your project?",
         default: '',
       },
       {
@@ -37,22 +37,22 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'),
-      { projectName: this.answers.projectName },
+      { projectName: this.answers.projectName }
     );
 
     this.fs.copyTpl(
       this.templatePath('.gitignore'),
-      this.destinationPath('.gitignore'),
+      this.destinationPath('.gitignore')
     );
 
     this.fs.copyTpl(
       this.templatePath('.prettierrc'),
-      this.destinationPath('.prettierrc'),
+      this.destinationPath('.prettierrc')
     );
 
     this.fs.copyTpl(
-      this.templatePath('js/.eslintrc.js'),
-      this.destinationPath('.eslintrc.js'),
+      this.templatePath('js/eslintrc.js'),
+      this.destinationPath('.eslintrc.js')
     );
 
     this.fs.copyTpl(
@@ -61,12 +61,12 @@ module.exports = class extends Generator {
       {
         projectName: this.answers.projectName,
         projectDescription: this.answers.projectDescription,
-      },
+      }
     );
 
     this.fs.copyTpl(
       this.templatePath('js/index.js'),
-      this.destinationPath('src/index.js'),
+      this.destinationPath('src/index.js')
     );
   }
 
