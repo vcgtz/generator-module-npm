@@ -1,5 +1,5 @@
 {
-  "name": "generator-npm-pkg",
+  "name": "generator-module-npm",
   "version": "0.0.1",
   "description": "NPM module generator",
   "files": [
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vcgtz/generator-npm-pkg.git"
+    "url": "git+https://github.com/vcgtz/generator-module-npm.git"
   },
   "keywords": [
     "yeoman-generator"
@@ -21,9 +21,9 @@
   "author": "Vicente Gutiérrez <gtz.rvera@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vcgtz/generator-npm-pkg/issues"
+    "url": "https://github.com/vcgtz/generator-module-npm/issues"
   },
-  "homepage": "https://github.com/vcgtz/generator-npm-pkg#readme",
+  "homepage": "https://github.com/vcgtz/generator-module-npm#readme",
   "dependencies": {
     "yeoman-generator": "^5.7.0",
     "yosay": "^2.0.2"
