@@ -50,7 +50,9 @@ module.exports = class extends Generator {
   }
 
   async writing() {
-    const folderName = this.answers.projectName.replace(/\s/g, '-').toLowerCase();
+    const folderName = this.answers.projectName
+      .replace(/\s/g, '-')
+      .toLowerCase();
     const folderPath = path.resolve(this.destinationPath(), folderName);
 
     this.destinationRoot(folderPath);
