@@ -1,6 +1,6 @@
 {
   "name": "generator-module-npm",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "NPM module generator",
   "files": [
     "generators"
