@@ -12,8 +12,8 @@ describe('Testing projects generation', () => {
         gitInit: false,
       })
       .then(() => {
-        assert.file('src/index.js');
-        assert.file('tests/index.test.js');
+        assert.file('js-project/src/index.js');
+        assert.file('js-project/tests/index.test.js');
 
         done();
       })
@@ -30,9 +30,9 @@ describe('Testing projects generation', () => {
         gitInit: false,
       })
       .then(() => {
-        assert.file('src/index.ts');
-        assert.file('tests/index.test.ts');
-        assert.file('tsconfig.json');
+        assert.file('ts-project/src/index.ts');
+        assert.file('ts-project/tests/index.test.ts');
+        assert.file('ts-project/tsconfig.json');
 
         done();
       })

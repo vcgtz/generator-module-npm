@@ -1,5 +1,6 @@
 const Generator = require('yeoman-generator');
 const yosay = require('yosay');
+const path = require('path');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -49,6 +50,10 @@ module.exports = class extends Generator {
   }
 
   async writing() {
+    const folderName = this.answers.projectName.replaceAll(' ', '-').toLowerCase();
+    const folderPath = path.resolve(this.destinationPath(), folderName);
+    this.destinationRoot(folderPath);
+
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'),
