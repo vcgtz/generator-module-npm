@@ -41,6 +41,25 @@ module.exports = class extends Generator {
         ],
       },
       {
+        type: 'list',
+        name: 'license',
+        message: 'Which license do you want to use?',
+        choices: [
+          {
+            name: 'MIT',
+            value: 'MIT',
+          },
+          {
+            name: 'ISC',
+            value: 'ISC',
+          },
+          {
+            name: 'Nothing for now',
+            value: '',
+          },
+        ],
+      },
+      {
         type: 'confirm',
         name: 'gitInit',
         message: 'Initialize a git repository?',
@@ -73,6 +92,13 @@ module.exports = class extends Generator {
       this.templatePath('.prettierrc'),
       this.destinationPath('.prettierrc')
     );
+
+    if (this.answers.license) {
+      this.fs.copyTpl(
+        this.templatePath(`${this.answers.license.toLowerCase()}_license`),
+        this.destinationPath('LICENSE')
+      );
+    }
 
     if (this.answers.lang === 'ts') {
       this._setTypeScriptFiles();
@@ -112,10 +138,7 @@ module.exports = class extends Generator {
     );
 
     const packageJson = this._getPackageJson();
-    packageJson.name = this.answers.projectName.toLowerCase().replace(/ /g, '-');
     packageJson.main = 'src/index.js';
-    packageJson.description = this.answers.projectDescription;
-    packageJson.license = 'MIT';
     packageJson.devDependencies = this._getJSDevDependencies();
     packageJson.scripts = this._getJSScripts();
 
@@ -149,11 +172,8 @@ module.exports = class extends Generator {
     );
 
     const packageJson = this._getPackageJson();
-    packageJson.name = this.answers.projectName.toLowerCase().replace(/ /g, '-');
     packageJson.main = 'dist/src/index.js';
     packageJson.types = 'dist/src/index.d.ts';
-    packageJson.description = this.answers.projectDescription;
-    packageJson.license = 'MIT';
     packageJson.devDependencies = this._getTSDevDependencies();
     packageJson.scripts = this._getTSScripts();
 
@@ -163,9 +183,9 @@ module.exports = class extends Generator {
   // eslint-disable-next-line class-methods-use-this
   _getPackageJson() {
     return {
-      name: '',
+      name: this.answers.projectName.toLowerCase().replace(/ /g, '-'),
       version: '0.0.1',
-      description: '',
+      description: this.answers.projectDescription,
       main: '',
       scripts: {
       },
@@ -176,7 +196,7 @@ module.exports = class extends Generator {
       keywords: [
       ],
       author: '',
-      license: '',
+      license: this.answers.license,
       bugs: {
         url: 'https://github.com/<user>/<repo>/issues'
       },
