@@ -15,7 +15,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  ignorePatterns: ["generators/app/templates"],
+  ignorePatterns: [],
   rules: {
   },
 };
