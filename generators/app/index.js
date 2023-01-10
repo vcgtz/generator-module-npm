@@ -187,24 +187,20 @@ module.exports = class extends Generator {
       version: '0.0.1',
       description: this.answers.projectDescription,
       main: '',
-      scripts: {
-      },
+      scripts: {},
       repository: {
         type: 'git',
-        url: 'git+https://github.com/<user>/<repo>.git'
+        url: 'git+https://github.com/<user>/<repo>.git',
       },
-      keywords: [
-      ],
+      keywords: [],
       author: '',
       license: this.answers.license,
       bugs: {
-        url: 'https://github.com/<user>/<repo>/issues'
+        url: 'https://github.com/<user>/<repo>/issues',
       },
       homepage: 'https://github.com/<user>/<repo>#readme',
-      dependencies: {
-      },
-      devDependencies: {
-      },
+      dependencies: {},
+      devDependencies: {},
     };
   }
 
@@ -216,23 +212,23 @@ module.exports = class extends Generator {
       'eslint-config-prettier': '^8.6.0',
       'eslint-plugin-import': '^2.26.0',
       jest: '^29.3.1',
-      prettier: '^2.8.2'
+      prettier: '^2.8.2',
     };
   }
 
   // eslint-disable-next-line class-methods-use-this
   _getTSDevDependencies() {
     return {
-      "@jest/globals": "^29.3.1",
-      "@typescript-eslint/eslint-plugin": "^5.48.1",
-      "@typescript-eslint/parser": "^5.48.1",
-      eslint: "^8.31.0",
-      "eslint-config-prettier": "^8.6.0",
-      "eslint-plugin-import": "^2.26.0",
-      jest: "^29.3.1",
-      prettier: "^2.8.2",
-      "ts-jest": "^29.0.3",
-      typescript: "^4.9.4"
+      '@jest/globals': '^29.3.1',
+      '@typescript-eslint/eslint-plugin': '^5.48.1',
+      '@typescript-eslint/parser': '^5.48.1',
+      eslint: '^8.31.0',
+      'eslint-config-prettier': '^8.6.0',
+      'eslint-plugin-import': '^2.26.0',
+      jest: '^29.3.1',
+      prettier: '^2.8.2',
+      'ts-jest': '^29.0.3',
+      typescript: '^4.9.4',
     };
   }
 
@@ -242,7 +238,7 @@ module.exports = class extends Generator {
       format: 'prettier --write "src/**/*.js"',
       'format:check': 'prettier --check "src/**/*.js"',
       lint: 'eslint "src/**/*.js"',
-      test: 'jest'
+      test: 'jest',
     };
   }
 
@@ -250,10 +246,10 @@ module.exports = class extends Generator {
   _getTSScripts() {
     return {
       format: 'prettier --write "src/**/*.{ts,js}"',
-      "format:check": 'prettier --check "src/**/*.{js,ts}"',
+      'format:check': 'prettier --check "src/**/*.{js,ts}"',
       lint: 'eslint "src/**/*.{js,ts}"',
       test: 'jest',
       build: 'tsc',
-    }
+    };
   }
 };
