@@ -102,15 +102,6 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('js/package.json'),
-      this.destinationPath('package.json'),
-      {
-        projectName: this.answers.projectName,
-        projectDescription: this.answers.projectDescription,
-      }
-    );
-
-    this.fs.copyTpl(
       this.templatePath('js/index.js'),
       this.destinationPath('src/index.js')
     );
@@ -119,6 +110,13 @@ module.exports = class extends Generator {
       this.templatePath('js/index.test.js'),
       this.destinationPath('tests/index.test.js')
     );
+
+    const packageJson = this._getJSPackageJson();
+    packageJson.name = this.answers.projectName.toLowerCase().replace(/ /g, '-');
+    packageJson.description = this.answers.projectDescription;
+    packageJson.license = 'MIT';
+
+    this.fs.extendJSON(this.destinationPath('package.json'), packageJson);
   }
 
   _setTypeScriptFiles() {
@@ -155,5 +153,47 @@ module.exports = class extends Generator {
       this.templatePath('ts/index.test.ts'),
       this.destinationPath('tests/index.test.ts')
     );
+  }
+
+  _getJSPackageJson() {
+    return {
+      name: '',
+      version: '0.0.1',
+      description: '',
+      main: 'src/index.js',
+      scripts: {
+        format: 'prettier --write "src/**/*.js"',
+        'format:check': 'prettier --check "src/**/*.js"',
+        lint: 'eslint "src/**/*.js"',
+        test: 'jest'
+      },
+      repository: {
+        type: 'git',
+        url: 'git+https://github.com/<user>/<repo>.git'
+      },
+      keywords: [
+      ],
+      author: '',
+      license: '',
+      bugs: {
+        url: 'https://github.com/<user>/<repo>/issues'
+      },
+      homepage: 'https://github.com/<user>/<repo>#readme',
+      dependencies: {
+      },
+      devDependencies: this._getJSDevDependencies(),
+    };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _getJSDevDependencies() {
+    return {
+      eslint: '^8.31.0',
+      'eslint-config-airbnb-base': '^15.0.0',
+      'eslint-config-prettier': '^8.6.0',
+      'eslint-plugin-import': '^2.26.0',
+      jest: '^29.3.1',
+      prettier: '^2.8.2'
+    };
   }
 };
