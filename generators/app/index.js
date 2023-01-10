@@ -111,10 +111,13 @@ module.exports = class extends Generator {
       this.destinationPath('tests/index.test.js')
     );
 
-    const packageJson = this._getJSPackageJson();
+    const packageJson = this._getPackageJson();
     packageJson.name = this.answers.projectName.toLowerCase().replace(/ /g, '-');
+    packageJson.main = 'src/index.js';
     packageJson.description = this.answers.projectDescription;
     packageJson.license = 'MIT';
+    packageJson.devDependencies = this._getJSDevDependencies();
+    packageJson.scripts = this._getJSScripts();
 
     this.fs.extendJSON(this.destinationPath('package.json'), packageJson);
   }
@@ -136,15 +139,6 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('ts/package.json'),
-      this.destinationPath('package.json'),
-      {
-        projectName: this.answers.projectName,
-        projectDescription: this.answers.projectDescription,
-      }
-    );
-
-    this.fs.copyTpl(
       this.templatePath('ts/index.ts'),
       this.destinationPath('src/index.ts')
     );
@@ -153,19 +147,27 @@ module.exports = class extends Generator {
       this.templatePath('ts/index.test.ts'),
       this.destinationPath('tests/index.test.ts')
     );
+
+    const packageJson = this._getPackageJson();
+    packageJson.name = this.answers.projectName.toLowerCase().replace(/ /g, '-');
+    packageJson.main = 'dist/src/index.js';
+    packageJson.types = 'dist/src/index.d.ts';
+    packageJson.description = this.answers.projectDescription;
+    packageJson.license = 'MIT';
+    packageJson.devDependencies = this._getTSDevDependencies();
+    packageJson.scripts = this._getTSScripts();
+
+    this.fs.extendJSON(this.destinationPath('package.json'), packageJson);
   }
 
-  _getJSPackageJson() {
+  // eslint-disable-next-line class-methods-use-this
+  _getPackageJson() {
     return {
       name: '',
       version: '0.0.1',
       description: '',
-      main: 'src/index.js',
+      main: '',
       scripts: {
-        format: 'prettier --write "src/**/*.js"',
-        'format:check': 'prettier --check "src/**/*.js"',
-        lint: 'eslint "src/**/*.js"',
-        test: 'jest'
       },
       repository: {
         type: 'git',
@@ -181,7 +183,8 @@ module.exports = class extends Generator {
       homepage: 'https://github.com/<user>/<repo>#readme',
       dependencies: {
       },
-      devDependencies: this._getJSDevDependencies(),
+      devDependencies: {
+      },
     };
   }
 
@@ -195,5 +198,42 @@ module.exports = class extends Generator {
       jest: '^29.3.1',
       prettier: '^2.8.2'
     };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _getTSDevDependencies() {
+    return {
+      "@jest/globals": "^29.3.1",
+      "@typescript-eslint/eslint-plugin": "^5.48.1",
+      "@typescript-eslint/parser": "^5.48.1",
+      eslint: "^8.31.0",
+      "eslint-config-prettier": "^8.6.0",
+      "eslint-plugin-import": "^2.26.0",
+      jest: "^29.3.1",
+      prettier: "^2.8.2",
+      "ts-jest": "^29.0.3",
+      typescript: "^4.9.4"
+    };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _getJSScripts() {
+    return {
+      format: 'prettier --write "src/**/*.js"',
+      'format:check': 'prettier --check "src/**/*.js"',
+      lint: 'eslint "src/**/*.js"',
+      test: 'jest'
+    };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  _getTSScripts() {
+    return {
+      format: 'prettier --write "src/**/*.{ts,js}"',
+      "format:check": 'prettier --check "src/**/*.{js,ts}"',
+      lint: 'eslint "src/**/*.{js,ts}"',
+      test: 'jest',
+      build: 'tsc',
+    }
   }
 };
