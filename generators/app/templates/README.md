@@ -1,5 +1,5 @@
 # <%= projectName %>
-Minimal library to generate random values.
+<%= projectDescription %>
 
 ## Installation
 This module is available through [NPM](https://www.npmjs.com/).

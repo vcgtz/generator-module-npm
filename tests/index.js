@@ -16,7 +16,9 @@ describe('Testing projects generation', () => {
         assert.file('js-project/src/index.js');
         assert.file('js-project/tests/index.test.js');
         assert.file('js-project/LICENSE');
+
         assert.fileContent('js-project/LICENSE', 'MIT License');
+        assert.fileContent('js-project/README.md', 'My JS project description');
 
         done();
       })
@@ -38,7 +40,9 @@ describe('Testing projects generation', () => {
         assert.file('ts-project/tests/index.test.ts');
         assert.file('ts-project/tsconfig.json');
         assert.file('ts-project/LICENSE');
+
         assert.fileContent('ts-project/LICENSE', 'ISC License');
+        assert.fileContent('ts-project/README.md', 'My TS project description');
 
         done();
       })

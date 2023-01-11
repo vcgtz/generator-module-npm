@@ -80,7 +80,10 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'),
-      { projectName: this.answers.projectName }
+      {
+        projectName: this.answers.projectName,
+        projectDescription: this.answers.projectDescription,
+      }
     );
 
     this.fs.copyTpl(
